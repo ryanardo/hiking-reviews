@@ -4,18 +4,13 @@ import models.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 
 import static org.junit.Assert.*;
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertFalse;
 
-/**
- * Created by Guest on 1/18/18.
- */
 public class Review_DAO_SQL2OTest {
 
     private Review_DAO_SQL2O review_DAO;
@@ -57,19 +52,37 @@ public class Review_DAO_SQL2OTest {
 
     @Test
     public void findById() throws Exception {
-
+        Review testReview = setupNewReview();
+        Review testReview2 = new Review("Review-2", "Title-2", 8);
+        review_DAO.add(testReview);
+        review_DAO.add(testReview2);
+        assertEquals(8, review_DAO.findById(2).getRating());
     }
 
     @Test
     public void update() throws Exception {
+        Review testReview = setupNewReview();
+        review_DAO.add(testReview);
+        review_DAO.update(1, "Review-2.1");
+        assertEquals("Review-2.1", review_DAO.findById(1).getReview());
     }
 
     @Test
     public void deleteById() throws Exception {
+        Review testReview = setupNewReview();
+        review_DAO.add(testReview);
+        review_DAO.deleteById(testReview.getIdReview());
+        assertEquals(0, review_DAO.getAll().size());
     }
 
     @Test
-    public void clearAllreviews() throws Exception {
+    public void clearAllReviews() throws Exception {
+        Review testReview = setupNewReview();
+        Review testReview2 = new Review("Review-2", "Title-2", 8);
+        review_DAO.add(testReview);
+        review_DAO.add(testReview2);
+        review_DAO.clearAllReviews();
+        assertEquals(0, review_DAO.getAll().size());
     }
 
 }

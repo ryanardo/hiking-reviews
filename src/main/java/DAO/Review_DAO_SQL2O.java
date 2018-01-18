@@ -39,23 +39,48 @@ public class Review_DAO_SQL2O implements Review_DAO {
         }
 
     @Override
-    public Review findById(int id) {
-        return null;
+    public Review findById(int idReview) {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM reviews WHERE idReview = :idReview")
+                    .addParameter("idReview", idReview)
+                    .executeAndFetchFirst(Review.class);
+        }
     }
 
     @Override
-    public void update(int id, String review) {
+    public void update(int idReview, String review) {
+        String sql = "UPDATE reviews SET review  = :review WHERE idReview = :idReview";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("review", review)
+                    .addParameter("idReview", idReview)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void deleteById(int idReview) {
+        String sql = "DELETE from reviews WHERE idReview = :idReview";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("idReview", idReview)
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+        }
 
     }
 
     @Override
-    public void deleteById(int id) {
-
-    }
-
-    @Override
-    public void clearAllreviews() {
-
+    public void clearAllReviews() {
+        String sql = "DELETE FROM reviews";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
 }

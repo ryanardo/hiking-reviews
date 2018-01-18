@@ -11,11 +11,11 @@ public interface Review_DAO {
 
     List<Review> getAll();
 
-    Review findById(int id);
+    Review findById(int idReview);
 
-    void update(int id, String review);
+    void update(int idReview, String review);
 
 
     void deleteById(int id);
-    void clearAllreviews();
+    void clearAllReviews();
 }
