@@ -11,11 +11,12 @@ public interface Comment_DAO {
 
     List<Comment> getAll();
 
-    Comment findById(int id);
+    Comment findById(int idComment);
 
-    void update(int id, String comment);
+    void update(String comment, int idComment);
 
 
-    void deleteById(int id);
-    void clearAllCategories();
+    void deleteById(int idComment);
+
+    void clearAllComments();
 }

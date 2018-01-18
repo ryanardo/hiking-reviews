@@ -16,6 +16,7 @@ public interface Review_DAO {
     void update(int idReview, String review);
 
 
-    void deleteById(int id);
+    void deleteById(int idReview);
+
     void clearAllReviews();
 }

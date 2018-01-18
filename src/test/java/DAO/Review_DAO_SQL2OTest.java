@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-
 import static org.junit.Assert.*;
 import static junit.framework.TestCase.assertEquals;
 

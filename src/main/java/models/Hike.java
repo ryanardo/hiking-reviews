@@ -2,7 +2,7 @@ package models;
 
 public class Hike {
     private int idHike;
-    private String name;
+    private String hike;
     private String description;
     private int averageRating;
     private int numberOfReviews;
@@ -10,8 +10,8 @@ public class Hike {
     private String dateCreated;
 
 
-    public Hike(String name, String description) {
-        this.name = name;
+    public Hike(String hike, String description) {
+        this.hike = hike;
         this.description = description;
     }
 
@@ -24,11 +24,11 @@ public class Hike {
     }
 
     public String getName() {
-        return name;
+        return hike;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.hike = hike;
     }
 
     public String getDescription() {
@@ -82,7 +82,7 @@ public class Hike {
         if (averageRating != hike.averageRating) return false;
         if (numberOfReviews != hike.numberOfReviews) return false;
         if (idLocation != hike.idLocation) return false;
-        if (!name.equals(hike.name)) return false;
+        if (!hike.equals(hike.hike)) return false;
         if (!description.equals(hike.description)) return false;
         return dateCreated != null ? dateCreated.equals(hike.dateCreated) : hike.dateCreated == null;
     }
@@ -90,7 +90,7 @@ public class Hike {
     @Override
     public int hashCode() {
         int result = idHike;
-        result = 31 * result + name.hashCode();
+        result = 31 * result + hike.hashCode();
         result = 31 * result + description.hashCode();
         result = 31 * result + averageRating;
         result = 31 * result + numberOfReviews;

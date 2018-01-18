@@ -2,7 +2,7 @@ SET MODE PostgreSQL;
 
 CREATE TABLE IF NOT EXISTS hikes (
     idHike INT PRIMARY KEY auto_increment,
-    name VARCHAR,
+    hike VARCHAR,
     description VARCHAR,
     averageRating INTEGER,
     numberOfReviews INTEGER,

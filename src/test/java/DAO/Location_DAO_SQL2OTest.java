@@ -18,7 +18,7 @@ public class Location_DAO_SQL2OTest {
     private Connection conn;
 
     public Location setupNewLocation() {
-        return new Location("vfd");
+        return new Location("something");
     }
 
     @Before
@@ -34,6 +34,61 @@ public class Location_DAO_SQL2OTest {
     public void tearDown() throws Exception {
         conn.close();
     }
+
+    @Test
+    public void addLocationSetsId() throws Exception {
+        Location testLocation = setupNewLocation();
+        int originalLocationId = testLocation.getIdLocation();
+        location_DAO.add(testLocation);
+        assertNotEquals(originalLocationId, testLocation.getIdLocation());
+    }
+
+    @Test
+    public void getAll() throws Exception {
+        Location testLocation = setupNewLocation();
+        Location testLocation2 = setupNewLocation();
+        location_DAO.add(testLocation);
+        location_DAO.add(testLocation2);
+        assertEquals(2, location_DAO.getAll().size());
+    }
+
+    @Test
+    public void findById() throws Exception {
+        Location testLocation = setupNewLocation();
+        Location testLocation2 = new Location("Location-2");
+        location_DAO.add(testLocation);
+        location_DAO.add(testLocation2);
+        assertEquals("Location-2", location_DAO.findById(2).getLocation());
+    }
+
+    @Test
+    public void update() throws Exception {
+        Location testLocation = setupNewLocation();
+        location_DAO.add(testLocation);
+        location_DAO.update(1, "Review-2.1");
+        assertEquals("Review-2.1", location_DAO.findById(1).getLocation());
+    }
+
+    @Test
+    public void deleteById() throws Exception {
+        Location testLocation = setupNewLocation();
+        location_DAO.add(testLocation);
+        location_DAO.deleteById(testLocation.getIdLocation());
+        assertEquals(0, location_DAO.getAll().size());
+    }
+
+    @Test
+    public void clearAllLocation() throws Exception {
+        Location testLocation = setupNewLocation();
+        Location testLocation2 = new Location("Review-2");
+        location_DAO.add(testLocation);
+        location_DAO.add(testLocation2);
+        location_DAO.clearAllLocations();
+        assertEquals(0, location_DAO.getAll().size());
+    }
+
+
+
 
 
 }
