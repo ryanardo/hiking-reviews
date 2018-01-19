@@ -23,11 +23,11 @@ public class Hike {
         this.idHike = idHike;
     }
 
-    public String getName() {
+    public String getHike() {
         return hike;
     }
 
-    public void setName(String name) {
+    public void setHike(String hike) {
         this.hike = hike;
     }
 

@@ -10,7 +10,6 @@ import org.sql2o.Sql2o;
 
 import static org.junit.Assert.*;
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotSame;
 
 public class Hike_DAO_SQL2OTest {
 
@@ -65,7 +64,7 @@ public class Hike_DAO_SQL2OTest {
         Hike testHike = setupNewHike();
         hike_DAO.add(testHike);
         hike_DAO.update(1, "Hike-2.1");
-        assertEquals("Hike-2.1", hike_DAO.findById(1).getName());
+        assertEquals("Hike-2.1", hike_DAO.findById(1).getHike());
     }
 
     @Test

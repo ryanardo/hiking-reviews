@@ -16,5 +16,6 @@ public interface Hike_DAO {
 
 
     void deleteById(int id);
+
     void clearAllHikes();
 }
